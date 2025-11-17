@@ -1,0 +1,16 @@
+name: Handle issues # Name of the GitHub Actions workflow
+on: issues # Trigger the workflow on issue events
+jobs:
+  handle_issue: # This is a job named "handle_issue"
+    runs-on: ubuntu-latest # The job will run on the latest Ubuntu runner
+    steps: # Steps represent a sequence of tasks to be executed as part of the job
+
+      - name: Checkout repository # This step checks out the repository code
+        uses: actions/checkout@v3 # Uses the checkout action to clone the repo
+
+      - name: Handle issue event # This step handles the issue event
+        run: |
+          echo "Issue event triggered: ${{ github.event.action }}" # Outputs the action that triggered the event
+          echo "Issue title: ${{ github.event.issue.title }}" # Outputs the title of the issue
+          echo "Issue body: ${{ github.event.issue.body }}" # Outputs the body of the issue
+          
