@@ -1,0 +1,46 @@
+name: deployment workflow 2 # Name of the GitHub Actions workflow
+on: push # Trigger the workflow on push events
+
+jobs:
+    lint: # This is a job named "lint"
+        runs-on: ubuntu-latest # The job will run on the latest Ubuntu runner
+        steps: # Steps represent a sequence of tasks to be executed as part of the job
+
+            - name: Checkout repository # This step checks out the repository code
+              uses: actions/checkout@v3 # Uses the checkout action to clone the repo
+
+            - name: install dependencies # This step installs the project dependencies
+              run: npm ci # Uses npm ci to install dependencies
+
+            - name: lint code # This step lints the code
+              run: npm run lint # Uses npm run lint to lint the code
+
+    test: # This is a job named "test"
+    
+        runs-on: ubuntu-latest # The job will run on the latest Ubuntu runner
+        steps: # Steps represent a sequence of tasks to be executed as part of the job
+
+            - name: Checkout repository # This step checks out the repository code
+              uses: actions/checkout@v3 # Uses the checkout action to clone the repo
+
+            - name: install dependencies # This step installs the project dependencies
+              run: npm ci # Uses npm ci to install dependencies
+
+            - name: Run tests # This step runs the tests
+              run: npm run test # Uses npm test to run the tests  
+
+    deploy: # This is a job named "deploy"
+        runs-on: ubuntu-latest # The job will run on the latest Ubuntu runner
+        steps: # Steps represent a sequence of tasks to be executed as part of the job
+
+            - name: Checkout repository # This step checks out the repository code
+              uses: actions/checkout@v3 # Uses the checkout action to clone the repo
+
+            - name: install dependencies # This step installs the project dependencies
+              run: npm ci # Uses npm ci to install dependencies
+
+            - name: Build application # This step builds the application
+              run: npm run build # Uses npm run build to build the application
+
+            - name: Deploy application # This step simulates deployment
+              run: echo "Deploying application..." # Placeholder command for deployment
